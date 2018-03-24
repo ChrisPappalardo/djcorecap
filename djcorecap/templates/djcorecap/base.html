@@ -1,0 +1,189 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  {% block head %}
+  <head>
+    <meta charset="utf-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta
+      name="description"
+      content="{% block description %}{% endblock description %}">
+    <meta
+      name="author"
+      content="{% block author %}{% endblock author %}">
+    <title>{% block title %}{% endblock title %}</title>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js">
+      </script>
+    <![endif]-->
+
+    {% block css %}
+    <!-- Le CSS
+         ====== -->
+
+    {% block external_css %}
+    <!-- place 3rd party CSS here -->
+
+    <!-- Latest compiled and minified Bootstrap -->
+    <link
+      href="{% static 'bootstrap/4.0.0-beta.2/css/bootstrap.min.css' %}"
+      rel="stylesheet">
+    {% endblock external_css %}
+
+    {% block project_css %}
+    <!-- place project-specific CSS here -->
+
+    <link href="{% static 'css/project.css' %}" rel="stylesheet">
+    {% endblock project_css %}
+
+    {% endblock css %}
+
+  </head>
+  {% endblock head %}
+
+  {% block body %}
+  <body id="page-top">
+
+    <!-- main navigation -->
+    {% block nav %}
+    <div class="m-b-1">
+      <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <button
+          class="navbar-toggler navbar-toggler-right"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="{% url 'home' %}">stockbot</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'home' %}">
+                Home <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'about' %}">
+                About
+              </a>
+            </li>
+            {% if request.user.is_authenticated %}
+            {% if request.user.is_staff %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'backtest:backtest_list' %}">
+                Backtests
+              </a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+              {# URL provided by django-allauth/account/urls.py #}
+              <a
+                class="nav-link"
+                href="{% url 'users:detail' request.user.username  %}">
+                My Profile
+              </a>
+            </li>
+            <li class="nav-item">
+              {# URL provided by django-allauth/account/urls.py #}
+              <a class="nav-link" href="{% url 'account_logout' %}">
+                {% trans "Sign Out" %}
+              </a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              {# URL provided by django-allauth/account/urls.py #}
+              <a id="sign-up-link" class="nav-link" href="{% url 'account_signup' %}">
+                Sign Up
+              </a>
+            </li>
+            <li class="nav-item">
+              {# URL provided by django-allauth/account/urls.py #}
+              <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">
+                Sign In
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+    </div>
+    {% endblock nav %}
+
+    {% block main %}
+
+    {% block messages %}
+    <!-- messages -->
+    <section id="messages">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 mx-auto fixed-bottom">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %} alert-dismissable fade show" role="alert">
+              {{ message }}
+              <button
+                type="button"
+                class="close"
+                data-dismiss="alert"
+                aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </section>
+    {% endblock messages %}
+
+    {% block content %}
+    <!-- main content goes here -->
+    <p>Content...</p>
+    {% endblock content %}
+
+    {% endblock main %}
+
+    {% block modal %}{% endblock modal %}
+
+    {% block javascript %}
+    <!-- Le javascript (placed @ end for fast page load)
+         =============================================== -->
+
+    {% block external_javascript %}
+    <!-- Place 3rd party JavaScript here -->
+
+    <!-- latest bootstrap JavaScript and dependencies -->
+    <script
+      src="{% static 'jquery/jquery-3.2.1.slim.min.js' %}">
+    </script>
+    <script
+      src="{% static 'popper/1.12.3/popper.min.js' %}">
+    </script>
+    <script
+      src="{% static 'bootstrap/4.0.0-beta.2/js/bootstrap.bundle.min.js' %}">
+    </script>
+    {% endblock external_javascript %}
+
+    {% block project_javascript %}
+    <!-- place project-specific JavaScript here -->
+
+    <script src="{% static 'js/project.js' %}"></script>
+    {% endblock project_javascript %}
+
+    {% endblock javascript %}
+
+  </body>
+  {% endblock body %}
+
+</html>
