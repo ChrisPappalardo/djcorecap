@@ -14,3 +14,20 @@ Features
 * Custom allauth templates that play nicely with Bootstrap (and themes like startbootstrap)
 * Convenience functions to support Bokeh plots
 * Template tag for auto-setting links to active
+
+
+Installation
+------------
+
+Add djcorecap.apps.DjCorecapConfig to your INSTALLED_APPS in settings.  
+Ensure that it comes before all other third party apps to enable 
+template overrides, etc.  
+
+If you plan to use the app's base template 
+as your project's base template, replace base.html in 
+project/templates/ with a file containing the following:
+
+{% extends "djcorecap/base.html" %}
+
+If you plan to use djcorecap's version of the allauth templates, delete 
+the account/ folder (if exists) from project/templates/.
