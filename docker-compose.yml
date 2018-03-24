@@ -1,0 +1,17 @@
+version: '3'
+
+volumes:
+  data: {}
+
+services:
+  djcorecap:
+    build:
+      context: .
+      dockerfile: ./compose/djcorecap/Dockerfile
+    environment:
+      - LC_ALL=C.UTF-8
+      - LANG=C.UTF-8
+    image: djcorecap
+    volumes:
+      - .:/app
+      - data:/data

@@ -1,0 +1,17 @@
+version: '3'
+
+volumes:
+  data_test: {}
+
+services:
+  djcorecap:
+    build:
+      context: .
+      dockerfile: ./compose/djcorecap/Dockerfile-test
+    environment:
+      - LC_ALL=C.UTF-8
+      - LANG=C.UTF-8
+    image: djcorecap:test
+    volumes:
+      - .:/app
+      - data_test:/data
