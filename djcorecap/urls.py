@@ -51,27 +51,27 @@ urlpatterns = [
 
     # base template
     url(
-        regex=r'^base/$',
+        regex=r'base/$',
         view=TemplateView.as_view(template_name='djcorecap/base.html'),
         name='base',
     ),
 
     # test template
     url(
-        regex=r'^test/$',
+        regex=r'test/$',
         view=TemplateView.as_view(template_name='djcorecap/test.html'),
         name='test',
     ),
 
     # dummy urls expected by base template
     url(
-        regex=r'^$',
+        regex=r'about/$',
         view=TemplateView.as_view(template_name='djcorecap/test.html'),
-        name='home',
+        name='about',
     ),
     url(
         regex=r'^$',
         view=TemplateView.as_view(template_name='djcorecap/test.html'),
-        name='about',
+        name='home',
     ),
 ]

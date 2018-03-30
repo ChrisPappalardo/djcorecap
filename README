@@ -2,7 +2,8 @@
 djcorecap
 =========
 
-Core app for Django projects that provides essential functions, tags, and enhanced Bootstrap-friendly templates.
+Core app for Django projects that provides essential functions, tags, and
+enhanced Bootstrap-friendly templates.
 
 * Free software: MIT license
 
@@ -10,16 +11,17 @@ Core app for Django projects that provides essential functions, tags, and enhanc
 Features
 --------
 
-* Custom base template that plays nicely with Bootstrap (and themes like startbootstrap)
-* Custom allauth templates that play nicely with Bootstrap (and themes like startbootstrap)
+* Custom base template that plays nicely with Bootstrap (and themes)
+* Custom allauth templates that play nicely with Bootstrap (and themes)
 * Convenience functions to support Bokeh plots
 * Template tag for auto-setting links to active
+* Bootstrap test page
 
 
 Installation
 ------------
 
-Add djcorecap.apps.DjCorecapConfig to your INSTALLED_APPS in settings.  
+Add djcorecap to your INSTALLED_APPS in settings.
 Ensure that it comes before all other third party apps to enable 
 template overrides, etc.  
 
@@ -27,7 +29,7 @@ If you plan to use the app's base template
 as your project's base template, replace base.html in 
 project/templates/ with a file containing the following:
 
-{% extends "djcorecap/base.html" %}
+{% extends 'djcorecap/base.html' %}
 
 If you plan to use djcorecap's version of the allauth templates, delete 
 the account/ folder (if exists) from project/templates/.
