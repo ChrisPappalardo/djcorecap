@@ -23,22 +23,22 @@
       </script>
     <![endif]-->
 
-    {% block css %}
     <!-- Le CSS
          ====== -->
+    {% block css %}
 
-    {% block external_css %}
     <!-- place 3rd party CSS here -->
-
+    {% block external_css %}
     <!-- Latest compiled and minified Bootstrap -->
     <link
-      href="{% static 'bootstrap/4.0.0/css/bootstrap.min.css' %}"
-      rel="stylesheet">
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous">
     {% endblock external_css %}
 
-    {% block project_css %}
     <!-- place project-specific CSS here -->
-
+    {% block project_css %}
     <link href="{% static 'css/project.css' %}" rel="stylesheet">
     {% endblock project_css %}
 
@@ -79,13 +79,11 @@
                 About
               </a>
             </li>
+            {% block nav_is_authenticated %}
             {% if request.user.is_authenticated %}
             {% if request.user.is_staff %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'backtest:backtest_list' %}">
-                Backtests
-              </a>
-            </li>
+            {% block nav_is_staff %}
+            {% endblock nav_is_staff %}
             {% endif %}
             <li class="nav-item">
               {# URL provided by django-allauth/account/urls.py #}
@@ -115,6 +113,7 @@
               </a>
             </li>
             {% endif %}
+            {% endblock nav_is_authenticated %}
           </ul>
         </div>
       </nav>
@@ -149,8 +148,8 @@
     </section>
     {% endblock messages %}
 
-    {% block content %}
     <!-- main content goes here -->
+    {% block content %}
     <p>Content...</p>
     {% endblock content %}
 
@@ -158,28 +157,32 @@
 
     {% block modal %}{% endblock modal %}
 
-    {% block javascript %}
     <!-- Le javascript (placed @ end for fast page load)
          =============================================== -->
+    {% block javascript %}
 
-    {% block external_javascript %}
     <!-- Place 3rd party JavaScript here -->
-
+    {% block external_javascript %}
     <!-- latest bootstrap JavaScript and dependencies -->
     <script
-      src="{% static 'jquery/jquery-3.2.1.slim.min.js' %}">
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous">
     </script>
     <script
-      src="{% static 'popper/1.12.9/popper.min.js' %}">
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous">
     </script>
     <script
-      src="{% static 'bootstrap/4.0.0/js/bootstrap.bundle.min.js' %}">
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous">
     </script>
     {% endblock external_javascript %}
 
-    {% block project_javascript %}
     <!-- place project-specific JavaScript here -->
-
+    {% block project_javascript %}
     <script src="{% static 'js/project.js' %}"></script>
     {% endblock project_javascript %}
 

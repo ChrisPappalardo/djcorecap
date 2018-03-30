@@ -1,17 +1,17 @@
 version: '3'
 
-volumes:
-  data_dev: {}
-
 services:
-  djcorecap:
+  django:
     build:
       context: .
-      dockerfile: ./compose/djcorecap/Dockerfile-dev
+      dockerfile: ./compose/django/Dockerfile-dev
+    command: python manage.py runserver 0.0.0.0:8000
     environment:
       - LC_ALL=C.UTF-8
       - LANG=C.UTF-8
+      - USE_DOCKER=yes
     image: djcorecap:dev
+    ports:
+      - "8000:8000"
     volumes:
-      - .:/app
-      - data_dev:/data
+      - .:/djcorecap
