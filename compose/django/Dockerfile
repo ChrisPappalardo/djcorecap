@@ -1,5 +1,4 @@
-
-FROM debian:latest
+FROM python:latest
 ENV PYTHONUNBUFFERED 1
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM xterm
@@ -8,10 +7,7 @@ ENV TERM xterm
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y apt-utils \
-    && apt-get install -y curl git less man nano sudo wget \
-    && apt-get install -y build-essential \
-    && apt-get install -y python python-dev python3 python3-dev \
-    && apt-get install -y libssl-dev libffi-dev
+    && apt-get install -y curl git less man nano sudo wget
 
 # configure apt-utils (fixes warnings)
 RUN dpkg-reconfigure apt-utils
@@ -20,18 +16,23 @@ RUN dpkg-reconfigure apt-utils
 RUN echo "alias ls='ls --color'" >> /etc/bash.bashrc
 RUN echo "alias grep='grep --color=auto'" >> /etc/bash.bashrc
 
-# download get-pip and install for python 2.x and 3.x
-RUN wget -P /tmp https://bootstrap.pypa.io/get-pip.py
-RUN python /tmp/get-pip.py
-RUN python3 /tmp/get-pip.py
+# upgrade pip
+RUN pip install --upgrade pip
 
-# install ipython for python 2.x and 3.x
-RUN python -m pip install ipython
-RUN python3 -m pip install ipython
-
-# install requirements for python 2.x and 3.x
+# install requirements
 COPY ./requirements /requirements
-RUN python -m pip install -r /requirements/base.txt
-RUN python3 -m pip install -r /requirements/base.txt
+RUN pip install -r /requirements/dev.txt
+
+# install editable package
+COPY . /djcorecap
+RUN pip install -e /djcorecap
+
+# create and configure django app for djcorecap development
+RUN django-admin startproject app
+RUN echo "INSTALLED_APPS += ['djcorecap']" >> /app/app/settings.py
+RUN echo "INSTALLED_APPS += ['crispy_forms']" >> /app/app/settings.py
+RUN echo "from django.conf.urls import include, url" >> /app/app/urls.py
+RUN echo "urlpatterns += [url(r'^djcorecap/', include('djcorecap.urls'))]" \
+    >> /app/app/urls.py
 
 WORKDIR /app

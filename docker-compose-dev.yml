@@ -1,10 +1,11 @@
 version: '3'
 
 services:
+
   django:
     build:
       context: .
-      dockerfile: ./compose/django/Dockerfile-dev
+      dockerfile: ./compose/django/Dockerfile
     command: python manage.py runserver 0.0.0.0:8080
     environment:
       - LC_ALL=C.UTF-8
@@ -15,3 +16,14 @@ services:
       - "8080:8080"
     volumes:
       - .:/djcorecap
+
+  sass:
+    build:
+      context: .
+      dockerfile: ./compose/sass/Dockerfile
+    environment:
+      - LC_ALL=C.UTF-8
+      - LANG=C.UTF-8
+    volumes:
+      - ./djcorecap/static:/static
+    command: sass --watch /static/sass:/static/css --sourcemap=none --scss
