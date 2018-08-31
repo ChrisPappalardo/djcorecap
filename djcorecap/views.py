@@ -11,7 +11,7 @@ view mixins and other view helper utilities for django
 
 
 from django.contrib import messages
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 
 def filter_by_user(model, user):
