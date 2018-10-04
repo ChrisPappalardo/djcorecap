@@ -43,4 +43,4 @@ def percent(dec, digits=2):
     transforms decimals into percentages to significant digits
     '''
 
-    return round(dec * 100, digits)
+    return round(float(dec) * 100, digits)
