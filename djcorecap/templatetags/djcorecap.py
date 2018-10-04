@@ -35,3 +35,12 @@ def active_url(context, url):
         pattern = url
 
     return 'active' if re.search(pattern, path) else ''
+
+
+@register.filter
+def percent(dec, digits=2):
+    '''
+    transforms decimals into percentages to significant digits
+    '''
+
+    return round(dec * 100, digits)
