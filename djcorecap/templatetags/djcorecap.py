@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+ # -*- coding: utf-8 -*-
 
 '''
 djcorecap/templatetags/core
@@ -43,4 +43,13 @@ def percent(dec, digits=2):
     transforms decimals into percentages to significant digits
     '''
 
-    return round(float(dec) * 100, digits)
+    p = '^[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?'
+
+    if any([
+            isinstance(dec, int),
+            isinstance(dec, float),
+            isinstance(dec, str) and re.search(p, dec),
+    ]):
+        return round(float(dec) * 100, digits)
+
+    return dec

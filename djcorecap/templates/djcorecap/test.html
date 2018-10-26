@@ -20,10 +20,22 @@
           <h1 id="djcorecap" >djcorecap</h1>
         </div>
         <div class="bs-component" >
-          Percent filter {{ 0.9555|percent }}%
+          Percent filter (float) {{ 0.9555|percent }}%
+        </div>
+        <div class="bs-component" >
+          Percent filter (pos int) {{ 1|percent }}%
+        </div>
+        <div class="bs-component" >
+          Percent filter (neg int) {{ -1|percent }}%
         </div>
         <div class="bs-component" >
           Percent filter (string) {{ "0.9555"|percent }}%
+        </div>
+        <div class="bs-component" >
+          Percent filter (invalid string) {{ "hi"|percent }}%
+        </div>
+        <div class="bs-component" >
+          Percent filter (None) {{ None|percent }}%
         </div>
       </div>
     </div>
