@@ -56,7 +56,7 @@
   <body>
 
     <!-- main navigation -->
-    {% block nav %}
+    {% block navbar %}
     <section id="navbar">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -71,6 +71,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            {% block navbar_content %}
             <a class="navbar-brand" href="{% url 'home' %}">
               {% block brand %}{% endblock brand %}
             </a>
@@ -121,11 +122,12 @@
               {% endif %}
               {% endblock nav_is_authenticated %}
             </ul>
+            {% endblock navbar_content %}
           </div>
         </div>
       </nav>
     </section>
-    {% endblock nav %}
+    {% endblock navbar %}
 
     {% block main %}
 
