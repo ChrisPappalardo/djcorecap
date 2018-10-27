@@ -43,13 +43,10 @@ def percent(dec, digits=2):
     transforms decimals into percentages to significant digits
     '''
 
-    p = '^[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?'
+    try:
 
-    if any([
-            isinstance(dec, int),
-            isinstance(dec, float),
-            isinstance(dec, str) and re.search(p, dec),
-    ]):
         return round(float(dec) * 100, digits)
 
-    return dec
+    except Exception as e:
+
+        return dec
