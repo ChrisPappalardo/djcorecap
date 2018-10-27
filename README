@@ -13,8 +13,9 @@ Features
 
 * Custom base template that plays nicely with Bootstrap (and themes)
 * Custom allauth templates that play nicely with Bootstrap (and themes)
+* Paginator template snippet ready for inclusion in other templates
 * Convenience functions to support Bokeh plots
-* Template tag for auto-setting links to active
+* Template tags for auto-setting links to active and formatting percentages
 * Bootstrap test page
 
 
