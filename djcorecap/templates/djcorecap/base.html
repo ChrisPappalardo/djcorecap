@@ -59,70 +59,78 @@
     {% block navbar %}
     <section id="navbar">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            {% block navbar_content %}
-            <a class="navbar-brand" href="{% url 'home' %}">
+        <div class="container mx-auto ml-auto mr-auto">
+          <div class="col-6">
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <a
+              class="navbar-brand d-none d-lg-block"
+              href="{% url 'home' %}">
               {% block brand %}{% endblock brand %}
             </a>
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-              <li class="nav-item active">
-                <a class="nav-link" href="{% url 'home' %}">
-                  Home <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'about' %}">
-                  About
-                </a>
-              </li>
-              {% block nav_is_authenticated %}
-              {% if request.user.is_authenticated %}
-              {% if request.user.is_staff %}
-              {% block nav_is_staff %}
-              {% endblock nav_is_staff %}
-              {% endif %}
-              <li class="nav-item">
-                {# URL provided by django-allauth/account/urls.py #}
-                <a
-                  class="nav-link"
-                  href="{% url 'users:detail' request.user.username  %}">
-                  My Profile
-                </a>
-              </li>
-              <li class="nav-item">
-                {# URL provided by django-allauth/account/urls.py #}
-                <a class="nav-link" href="{% url 'account_logout' %}">
-                  {% trans "Sign Out" %}
-                </a>
-              </li>
-              {% else %}
-              <li class="nav-item">
-                {# URL provided by django-allauth/account/urls.py #}
-                <a id="sign-up-link" class="nav-link" href="{% url 'account_signup' %}">
-                  Sign Up
-                </a>
-              </li>
-              <li class="nav-item">
-                {# URL provided by django-allauth/account/urls.py #}
-                <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">
-                  Sign In
-                </a>
-              </li>
-              {% endif %}
-              {% endblock nav_is_authenticated %}
-            </ul>
-            {% endblock navbar_content %}
+          </div>
+          <div class="col-6">
+            <div
+              class="collapse navbar-collapse justify-content-end"
+              id="navbarSupportedContent">
+              {% block navbar_content %}
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'home' %}">
+                    Home <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'about' %}">
+                    About
+                  </a>
+                </li>
+                {% block nav_is_authenticated %}
+                {% if request.user.is_authenticated %}
+                {% if request.user.is_staff %}
+                {% block nav_is_staff %}
+                {% endblock nav_is_staff %}
+                {% endif %}
+                <li class="nav-item">
+                  {# URL provided by django-allauth/account/urls.py #}
+                  <a
+                    class="nav-link"
+                    href="{% url 'users:detail' request.user.username  %}">
+                    My Profile
+                  </a>
+                </li>
+                <li class="nav-item">
+                  {# URL provided by django-allauth/account/urls.py #}
+                  <a class="nav-link" href="{% url 'account_logout' %}">
+                    {% trans "Sign Out" %}
+                  </a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                  {# URL provided by django-allauth/account/urls.py #}
+                  <a id="sign-up-link" class="nav-link" href="{% url 'account_signup' %}">
+                    Sign Up
+                  </a>
+                </li>
+                <li class="nav-item">
+                  {# URL provided by django-allauth/account/urls.py #}
+                  <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">
+                    Sign In
+                  </a>
+                </li>
+                {% endif %}
+                {% endblock nav_is_authenticated %}
+              </ul>
+              {% endblock navbar_content %}
+            </div>
           </div>
         </div>
       </nav>
