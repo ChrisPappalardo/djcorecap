@@ -139,6 +139,11 @@
 
     {% block main %}
 
+    <!-- main content goes here -->
+    {% block content %}
+    <p>Content...</p>
+    {% endblock content %}
+
     {% block messages %}
     <!-- messages -->
     <section id="messages">
@@ -164,11 +169,6 @@
       </div>
     </section>
     {% endblock messages %}
-
-    <!-- main content goes here -->
-    {% block content %}
-    <p>Content...</p>
-    {% endblock content %}
 
     {% endblock main %}
 
