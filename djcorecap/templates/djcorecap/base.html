@@ -1,9 +1,11 @@
 {% load i18n static %}
 <!DOCTYPE html>
 <html lang="en">
+  {% block html %}
 
-  {% block head %}
   <head>
+    {% block head %}
+
     {% block meta %}
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -56,11 +58,11 @@
 
     {% endblock css %}
 
+    {% endblock head %}
   </head>
-  {% endblock head %}
 
-  {% block body %}
   <body>
+    {% block body %}
 
     <!-- main navigation -->
     {% block navbar %}
@@ -212,7 +214,8 @@
 
     {% endblock javascript %}
 
+    {% endblock body %}
   </body>
-  {% endblock body %}
 
+  {% endblock html %}
 </html>
