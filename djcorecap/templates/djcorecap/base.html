@@ -1,9 +1,9 @@
 {% load i18n static %}
 <!DOCTYPE html>
-<html lang="en">
+{% block html_tag %}<html lang="en">{% endblock html_tag %}
   {% block html %}
 
-  <head>
+  {% block head_tag %}<head>{% endblock head_tag %}
     {% block head %}
 
     {% block meta %}
@@ -61,7 +61,7 @@
     {% endblock head %}
   </head>
 
-  <body>
+  {% block body_tag %}<body>{% endblock body_tag %}
     {% block body %}
 
     <!-- main navigation -->
