@@ -22,7 +22,7 @@ def active_url(context, url):
     returns 'active' if url matches request.path in context
     '''
 
-    path = context['request'].path
+    path = getattr(context.get('request', object()), 'path', '')
 
     try:
 
