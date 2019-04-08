@@ -7,11 +7,11 @@ services:
   djcorecap:
     build:
       context: .
-      dockerfile: ./compose/djcorecap/Dockerfile-test
+      dockerfile: ./compose/djcorecap/Dockerfile
     environment:
       - LC_ALL=C.UTF-8
       - LANG=C.UTF-8
     image: djcorecap:test
     volumes:
-      - .:/app
+      - .:/djcorecap
       - data_test:/data

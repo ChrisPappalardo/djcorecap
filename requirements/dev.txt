@@ -6,7 +6,6 @@ bumpversion>=0.5.3
 coverage>=4.1
 django>=1.11.18
 flake8>=2.6.0
-six>=1.10.0
 Sphinx>=1.4.8
 watchdog>=0.8.3
 wheel>=0.29.0
