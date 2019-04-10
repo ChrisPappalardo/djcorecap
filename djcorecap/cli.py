@@ -26,6 +26,7 @@ def since(since, start=None):
         raise TypeError('since arg must be a list or sequence of strings')
 
     start = timezone.now() if start is None else start
+    tzinfo = start.tzinfo
 
     for s in since:
 
@@ -46,6 +47,7 @@ def since(since, start=None):
                     year=start.year - 1 if start.month == 1 else start.year,
                     month=start.month - 1 if start.month > 1 else 12,
                     day=start.day,
+                    tzinfo=tzinfo,
                 )
 
         if years:
@@ -53,6 +55,7 @@ def since(since, start=None):
                 year=start.year-1,
                 month=start.month,
                 day=start.day,
+                tzinfo=tzinfo,
             )
 
     return start
