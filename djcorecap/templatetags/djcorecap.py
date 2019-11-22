@@ -38,6 +38,28 @@ def active_url(context, url):
 
 
 @register.filter
+def get(obj, key):
+    '''
+    returns value for key in dict, list, or object
+    '''
+
+    if isinstance(obj, dict):
+        return obj.get(key)
+
+    elif hasattr(obj, key):
+
+        if hasattr(getattr(obj, key), '__call__'):
+            return getattr(obj, key)()
+
+        return getattr(obj, key)
+
+    elif isinstance(obj, list):
+        return obj[key]
+
+    return obj  # django docs say to not raise exceptions on errors
+
+
+@register.filter
 def percent(dec, digits=2):
     '''
     transforms decimals into percentages to significant digits

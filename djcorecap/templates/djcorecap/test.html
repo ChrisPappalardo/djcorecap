@@ -37,6 +37,18 @@
         <div class="bs-component" >
           Percent filter (None) {{ None|percent }}%
         </div>
+        <div class="bs-component" >
+          Get dict key (None) {{ view.kwargs|get:"foo" }}
+        </div>
+        <div class="bs-component" >
+          Get object attribute (/djcorecap/) {{ view.request|get:"path" }}
+        </div>
+        <div class="bs-component" >
+          Get object callable (/djcorecap/) {{ view.request.path|get:"__str__" }}
+        </div>
+        <div class="bs-component" >
+          Get object attribute (/) {{ view.request.path|get:"0" }}
+        </div>
       </div>
     </div>
   </div>
