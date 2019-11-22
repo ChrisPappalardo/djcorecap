@@ -43,15 +43,17 @@ def get(obj, key):
     returns value for key in dict, list, or object
     '''
 
+    k = str(key)
+
     if isinstance(obj, dict):
-        return obj.get(key)
+        return obj.get(k)
 
-    elif hasattr(obj, key):
+    elif hasattr(obj, k):
 
-        if hasattr(getattr(obj, key), '__call__'):
-            return getattr(obj, key)()
+        if hasattr(getattr(obj, k), '__call__'):
+            return getattr(obj, k)()
 
-        return getattr(obj, key)
+        return getattr(obj, k)
 
     elif isinstance(obj, list):
         return obj[key]
