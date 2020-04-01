@@ -7,11 +7,23 @@ djcorecap/views
 view mixins and other view helper utilities for django
 '''
 
-###############################################################################
-
-
 from django.contrib import messages
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django.utils.decorators import method_decorator
+
+
+is_logged_in = method_decorator(
+    login_required(login_url='account_login'),
+    name='dispatch',
+)
+
+
+is_staff = method_decorator(
+    staff_member_required,
+    name='dispatch',
+)
 
 
 def filter_by_user(model, user):

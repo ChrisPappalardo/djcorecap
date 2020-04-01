@@ -7,11 +7,16 @@ djcorecap/forms
 form helpers and utilities
 '''
 
-
 from crispy_forms.layout import (
     Div,
     Field,
+    HTML,
     Layout,
+)
+
+
+cancel = HTML(
+    '<a class="btn btn-secondary" href="{{ request.GET.next }}">Cancel</a>',
 )
 
 
