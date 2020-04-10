@@ -19,9 +19,7 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
-    'bokeh>=1.1.0',
-    'django>=1.8',
-    'django-crispy-forms>=1.7.2',
+    'django',
 ]
 
 setup_requirements = []
@@ -62,6 +60,6 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/ChrisPappalardo/djcorecap',
-    version='1.0.0',
+    version='1.0.1',
     zip_safe=False,
 )
