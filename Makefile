@@ -1,6 +1,8 @@
 .PHONY: clean clean-test clean-pyc clean-build clean-docker docs help
 .DEFAULT_GOAL := help
 
+PYTHON := /usr/bin/python3
+
 define BROWSER_PYSCRIPT
 import os, webbrowser, sys
 
@@ -24,12 +26,12 @@ for line in sys.stdin:
 endef
 export PRINT_HELP_PYSCRIPT
 
-BROWSER := python -c "$$BROWSER_PYSCRIPT"
+BROWSER := $(PYTHON) -c "$$BROWSER_PYSCRIPT"
 
 help:
-	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
+	@$(PYTHON) -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
-clean: clean-build clean-pyc clean-test clean-docker
+clean: clean-build clean-pyc clean-test
 
 clean-build: ## remove build artifacts
 	rm -fr build/
@@ -38,7 +40,7 @@ clean-build: ## remove build artifacts
 	find . -name '*.egg-info' -exec rm -fr {} +
 	find . -name '*.egg' -exec rm -f {} +
 
-clean-pyc: ## remove Python file artifacts
+clean-pyc: ## remove python file artifacts
 	find . -name '*.pyc' -exec rm -f {} +
 	find . -name '*.pyo' -exec rm -f {} +
 	find . -name '*~' -exec rm -f {} +
@@ -49,20 +51,20 @@ clean-test: ## remove test and coverage artifacts
 	rm -f .coverage
 	rm -fr htmlcov/
 
-clean-docker: ## remove docker images and containers
+clean-docker: ## remove docker images and containers *DANGER*
 	-docker ps --all --quiet | xargs docker rm --force 2>/dev/null || true
 	-docker images --quiet | xargs docker rmi --force 2>/dev/null || true
 
 lint: ## check style with flake8
 	flake8 djcorecap tests
 
-test: ## run tests quickly with the default Python
-	python setup.py test
+test: ## run tests quickly with the default python
+	$(PYTHON) setup.py test
 
-test-all: ## run tests on every Python version with tox
+test-all: ## run tests on every python version with tox
 	tox
 
-coverage: ## check code coverage quickly with the default Python
+coverage: ## check code coverage quickly with the default python
 	coverage run --source djcorecap setup.py test
 	coverage report -m
 	coverage html
@@ -83,9 +85,9 @@ release: clean ## package and upload a release
 	twine upload dist/*
 
 dist: clean ## builds source and wheel package
-	python setup.py sdist
-	python setup.py bdist_wheel
+	$(PYTHON) setup.py sdist
+	$(PYTHON) setup.py bdist_wheel
 	ls -l dist
 
-install: clean ## install the package to the active Python's site-packages
-	python setup.py install
+install: clean ## install the package to the active python's site-packages
+	$(PYTHON) setup.py install
