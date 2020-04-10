@@ -1,3 +1,15 @@
+### Generic Template
+
+# pico
+.*.swp
+
+# emacs
+*~
+\#*\#
+.\#*
+
+### Python Template
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -100,6 +112,8 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+### Project Template
 
 # thirdparty, compiled, and cache css
 djcorecap/static/css/
