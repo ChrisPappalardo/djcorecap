@@ -19,7 +19,9 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
+    'bokeh>=1.1.0',
     'django>=1.8',
+    'django-crispy-forms>=1.7.2',
 ]
 
 setup_requirements = []
