@@ -30,7 +30,9 @@ If you plan to use the app's base template
 as your project's base template, replace base.html in 
 project/templates/ with a file containing the following:
 
-{% extends 'djcorecap/base.html' %}
+.. code-block:: jinja
+
+   {% extends 'djcorecap/base.html' %}
 
 If you plan to use djcorecap's version of the allauth templates, delete 
 the account/ folder (if exists) from project/templates/.
